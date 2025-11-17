@@ -24,6 +24,11 @@ class MainActivity : AppCompatActivity() {
         prepareViewModel()
     }
 
+    override fun onPause() {
+        super.onPause()
+        db.totalDao().update(Total(ID, viewModel.total.value!!))
+    }
+
     private fun updateText(total: Int){
         findViewById<TextView>(R.id.text_total).text =
             getString(R.string.text_total, total)
